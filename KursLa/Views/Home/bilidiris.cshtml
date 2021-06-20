@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "bilidiris";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div>
+    <bol>Ödənilməsinə üç gün qalan bildirişlər:</bol>
+</div>
+<ul>
+    @foreach (var item in ViewBag.bil3)
+    {
+        if (item.Tip == "telebe")
+        {
+            <li><a href="~/Home/edittelebe/@item.TelebeId">@item.TelebeTamAd adlı tələbənin aylıq ödəniş gününə @(item.TelebeOdenisGunu - DateTime.Now.Day) gün qalmışdır(miqdar:<span style="color: red;"> @item.TelebeToplamOdenis AzN</span>) </a></li>
+        }
+        else if (item.Tip == "isci")
+        {
+            <li><a href="~/Home/editisci/@item.TelebeId">@item.TelebeTamAd adlı işçinin aylıq maaşına  @(item.TelebeOdenisGunu - DateTime.Now.Day) gün qalmışdır(miqdar: <span style="color: red;"> @item.TelebeToplamOdenis AzN</span>) </a></li>
+
+        }
+        else
+        {
+            <li><a href="~/Home/editarenda/@item.TelebeId">@item.TelebeTamAd filalının kirayə ödənişinə @(item.TelebeOdenisGunu - DateTime.Now.Day) günqalmışdır(miqdar: <span style="color: red;"> @item.TelebeToplamOdenis AzN</span>) </a></li>
+        }
+    }
+</ul>
+

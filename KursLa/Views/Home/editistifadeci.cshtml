@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "editistifadeci";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+@using KursLa.Models
+<div class="header">
+    <h4>İstifadəçiyə düzəliş et:</h4>
+</div>
+<div class="content">
+    <form method="post" action="~/Home/upistifadeci/@Model.IstifadeciId">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tam Ad(ad,soyad):</font></font></label>
+                    <input type="text" class="form-control" placeholder="ad,soyad" name="IstifadeciTamAd" value="@Model.IstifadeciTamAd">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Istifadəçi telefon nömrəsi</font></font></label>
+                    <input type="text" class="form-control" placeholder="telefon*" name="IstifadeciTelefon" value="@Model.IstifadeciTelefon">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Istifadeci Mail:</font></font></label>
+                    <input type="text" class="form-control" name="IstifadeciMail" placeholder="mail" value="@Model.IstifadeciMail">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Istifadeci parol:</font></font></label>
+                    <input type="text" class="form-control" name="IstifadeciParol" placeholder="parol" value="@Model.IstifadeciParol">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Filial:</font></font></label>
+                    <select name="IstifadeciFilialId" class="form-control" style="cursor: pointer;">
+                        @foreach (var item in ViewBag.filial)
+                        {
+                            <option @(item.FilialId == Model.IstifadeciFilialId ? "selected" : "") value="@item.FilialId">@item.FilialAd</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Filial:</font></font></label>
+                    <select name="IstifadeciTipId" class="form-control" style="cursor: pointer;">
+                        @foreach (var item in ViewBag.tip)
+                        {
+                            <option  @(item.TipId == Model.IstifadeciTipId ? "selected" : "") value="@item.TipId ">@item.TipAd </option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-info btn-fill pull-right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Əlavə et</font></font></button>
+        <div class="clearfix"></div>
+    </form>
+</div>
+

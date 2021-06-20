@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "TelebeOdenisi";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="content">
+        <div class="col-md-12">
+            <div class="header">
+                <h4>Siyahıya yeni Tələbə  ödənişi əlavə et:</h4>
+            </div>
+            <hr />
+            <form method="post" action="~/Home/yenitelebeodenis">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Adı:</font></font></label>
+                            <select name="TelebeodenisTelebeId" class="form-control" style="cursor: pointer;">
+                                @foreach (var item in ViewBag.telebe)
+                                {
+                                <option value="@item.TelebeId">@(ViewBag.telebe.IndexOf(item)+1))@item.TelebeTamAd-@item.FilialAd-@item.PaketAd</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ödənilən məbləğ:</font></font></label>
+                            <input type="text" class="form-control" placeholder="odenilen mebleq" name="TelebeodenisOdediyiMebleq">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tarix:</font></font></label>
+                            <input type="date" class="form-control" name="TelebeodenisOdediyiGunu">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-info btn-fill pull-right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Əlavə et</font></font></button>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="header">
+            <h4 class="title">Bütün ödənilənlərin siyahısı:</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <select onchange="myFunctionSel();" name="IsciodenisIsciId" id="select_id" class="form-control" style="cursor: pointer;">
+                        <option selected value="">Ayı seçin</option>
+                        @foreach (var item in ViewBag.tarix)
+                        {
+                            <option value="@item.month.@item.Year">@item.Year-@item.AyAd</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+            <div class="input-group input-group-lg" style="margin-top: 10px;float: right;">
+                <input onkeyup="myFunction()" id="myInput" type="text" class="form-control" placeholder="Axtar..">
+            </div>
+            </div>
+            </div>
+            <div class="content table-responsive table-full-width">
+                <table id="mytable" style="cursor: pointer;" class="table table-hover table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Ad</th>
+                            <th>Filial Ad</th>
+                            <th>Ödəməli </th>
+                            <th>Ödənilən </th>
+                            <th>Borc </th>
+                            <th>Tarix</th>
+                            <th>Müəllim</th>
+                            <th>Paket</th>
+                            <th colspan="2" class="text-center">Düzəliş et</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.telebeodenismain)
+                        {
+                            <tr>
+                                <td>@(ViewBag.telebeodenismain.IndexOf(item)+1)</td>
+                                <td>@item.TelebeTamAd</td>
+                                <td>@item.FilialAd </td>
+                                <td>@item.TelebeToplamOdenis</td>
+                                <td id="price">@item.TelebeodenisOdediyiMebleq </td>
+                                <td>@item.TelebeBorc </td>
+                                <td>@item.TelebeodenisOdediyiGunu </td>
+                                <td>@item.IsciTamAd </td>
+                                <td>@item.PaketAd </td>
+                                <td class="text-center"><a href="~/Home/edittelebeodenis/@item.TelebeodenisId"><i class="fas fa-edit"></i></a></td>
+                                <td class="text-center"><a href="~/Home/siltelebeodenis/@item.TelebeodenisId"><i style="font-size: 25px;" class="pe-7s-close"></i></a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="header">
+                    <h4>Bütün  toplam Tələbə ödəniş miqdarı: <span style="color: red;" id="total">0</span> &nbsp; AzN </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+

@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "editxerc";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+@using KursLa.Models
+<div class="container-fluid">
+    <div class="content">
+        <div class="col-md-12">
+            <div class="header">
+                <h4>Xərcə düzəliş et:</h4>
+            </div>
+            <hr />
+            <form method="post" action="~/Home/upxerc/@Model.XercId">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Adı:</font></font></label>
+                            <input type="text" class="form-control" placeholder="XercAd" name="XercAd" value="@Model.XercAd">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Miqdar:</font></font></label>
+                            <input type="text" class="form-control" placeholder="XercMiqdar" name="XercMiqdar" value="@Model.XercMiqdar">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tarix:</font></font></label>
+                            <input type="text" class="form-control" name="XercTarix" value="@Model.XercTarix" >
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Filial:</font></font></label>
+                            <select name="XercFilialId" class="form-control" style="cursor: pointer;">
+                                @foreach (var item in ViewBag.filial)
+                                {
+                                <option @(item.FilialId == Model.XercFilialId ? "selected" : "") value="@item.FilialId">@item.FilialAd</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-info btn-fill pull-right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Yadda saxla</font></font></button>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

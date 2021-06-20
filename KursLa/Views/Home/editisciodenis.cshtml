@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "editisciodenis";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+@using KursLa.Models
+<div class="container-fluid">
+    <div class="content">
+        <div class="col-md-12">
+            <div class="header">
+                <h4>Siyahıya yeni Tələbə  ödənişi əlavə et:</h4>
+            </div>
+            <hr />
+            <form method="post" action="~/Home/upisciodenis/@Model.IsciodenisId">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Adı:</font></font></label>
+                            <select name="IsciodenisIsciId" class="form-control" style="cursor: pointer;">
+                                @foreach (var item in ViewBag.isci)
+                                {
+                                    <option @(item.IsciId == Model.IsciodenisIsciId ? "selected" : "") value="@item.IsciId">@(ViewBag.isci.IndexOf(item)+1))@item.IsciTamAd-@item.FilialAd-@item.VezifeAd</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ödənilən məbləğ:</font></font></label>
+                            <input type="text" class="form-control" placeholder="odenilen mebleq" name="IsciodenisOdenilenMebleq" value="@Model.IsciodenisOdenilenMebleq">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tarix:</font></font></label>
+                            <input type="text" class="form-control" name="IsciodenisOdenildiyiGun" value="@Model.IsciodenisOdenildiyiGun">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-info btn-fill pull-right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Əlavə et</font></font></button>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+    </div>

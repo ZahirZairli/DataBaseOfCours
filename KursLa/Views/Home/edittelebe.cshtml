@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "edittelebe";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+<div class="row" style="overflow: hidden;">
+<div class="header">
+    <a href="~/Home/Telebeler">Bütün tələbələrin siyahısına bax >></a>
+</div>
+    <div class="card">
+        <div class="header">
+            <h4>Tələbəyə düzəliş et:</h4>
+        </div>
+        <div class="content">
+            <form method="post" action="~/Home/uptelebe/@Model.TelebeId">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tam Ad(ad,soyad):</font></font></label>
+                            <input type="text" class="form-control" placeholder="ad,soyad" name="TelebeTamAd" value="@Model.TelebeTamAd">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Endirim(AzN):</font></font></label>
+                            <input type="text" class="form-control" placeholder="Endirim(AzN)" name="TelebeEndirim" value="@Model.TelebeEndirim">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tədris paketi:</font></font></label>
+                            <select name="TelebePaketId" class="form-control" style="cursor: pointer;">
+                                @foreach (var item in ViewBag.paket)
+                                {
+                                    <option @(item.PaketId == Model.TelebePaketId ? "selected" : "") value="@item.PaketId">@item.PaketAd</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tələbə qeydiyyat tarixi:</font></font></label>
+                            <input type="text" data-date="" data-date-format="YYYY MMMM DD" class="form-control" name="TelebeQeydiyyatTarixi" value="@Model.TelebeQeydiyyatTarixi">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Müəllim:</font></font></label>
+                            <select name="TelebeIsciId" class="form-control" style="cursor: pointer;">
+                                @foreach (var item in ViewBag.isci)
+                                {
+                                    <option @(item.IsciId == Model.TelebeIsciId ? "selected" : "") value="@item.IsciId">@item.IsciTamAd</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Filial:</font></font></label>
+                            <select name="TelebeFilialId" class="form-control" style="cursor: pointer;">
+                                @foreach (var item in ViewBag.filial)
+                                {
+                                    <option @(item.FilialId == Model.TelebeFilialId ? "selected" : "") value="@item.FilialId">@item.FilialAd</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Telebe Odenis Gunu:</font></font></label>
+                            <input type="number" class="form-control" placeholder="mes: 28" name="TelebeOdenisGunu" value="@Model.TelebeOdenisGunu">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-info btn-fill pull-right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Əlavə et</font></font></button>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "edittelebeodenis";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+@using KursLa.Models
+
+<div class="container-fluid">
+    <div class="content">
+        <div class="col-md-12">
+            <div class="header">
+                <h4>Siyahıya yeni Tələbə  ödənişi əlavə et:</h4>
+            </div>
+            <hr />
+            <form method="post" action="~/Home/uptelebeodenis/@Model.TelebeodenisId">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Adı:</font></font></label>
+                            <select name="TelebeodenisTelebeId" class="form-control" style="cursor: pointer;">
+                                @foreach (var item in ViewBag.telebe)
+                                {
+                                    <option  @(item.TelebeId == Model.TelebeodenisTelebeId ? "selected" : "") value="@item.TelebeId">@(ViewBag.telebe.IndexOf(item)+1))@item.TelebeTamAd-@item.FilialAd-@item.PaketAd</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ödənilən məbləğ:</font></font></label>
+                            <input type="text" class="form-control" placeholder="odenilen mebleq" name="TelebeodenisOdediyiMebleq" value="@Model.TelebeodenisOdediyiMebleq">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tarix:</font></font></label>
+                            <input type="text" class="form-control" name="TelebeodenisOdediyiGunu" value="@Model.TelebeodenisOdediyiGunu">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-info btn-fill pull-right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Yadda saxla</font></font></button>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+    </div>

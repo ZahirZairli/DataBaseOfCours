@@ -1,0 +1,151 @@
+﻿
+@{
+    ViewBag.Title = "Employer";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row" style="overflow: hidden;">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Bütün işçilərin siyahısı:</h4>
+                </div>
+                <div class="input-group input-group-lg" style="margin-top: 20px;">
+                    <input onkeyup="myFunction()" id="myInput" type="text" class="form-control" placeholder="Axtar..">
+                </div>
+                <div class="content table-responsive table-full-width">
+                    <div style="overflow-x: auto;">
+                        <table id="mytable" style="cursor: pointer;" class="table table-hover table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Ad</th>
+                                    <th>Maaş</th>
+                                    <th>Filial</th>
+                                    <th>Vəzifə</th>
+                                    <th>Müqavilənin bağlanma tarixi</th>
+                                    <th>Müqavilənin bitmə tarixi</th>
+                                    <th>Maaş günü</th>
+                                    <th>Telefon</th>
+                                    <th>Işçi maaş faiz</th>
+                                    <th>Işçi toplam maaş</th>
+                                    <th colspan="2" class="text-center">Düzəliş et</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.isci)
+                                {
+                                    <tr>
+                                        <td>@(ViewBag.isci.IndexOf(item)+1)</td>
+                                        <td>@item.IsciTamAd</td>
+                                        <td>@item.IsciMaas</td>
+                                        <td>@item.FilialAd</td>
+                                        <td>@item.VezifeAd</td>
+                                        <td>@item.IsciMuqavileBaqlanmaTarixi</td>
+                                        <td>@item.IsciMuqavileBitmeTarixi</td>
+                                        <td>@item.IsciMaasGunu</td>
+                                        <td>@item.IsciTelefon</td>
+                                        <td>@item.IsciMaasFaiz</td>
+                                        <td id="price">@item.IsciToplamMaas </td>
+                                        <td class="text-center"><a href="~/Home/editisci/@item.IsciId"><i class="fas fa-edit"></i></a></td>
+                                        <td class="text-center"><a href="~/Home/silisci/@item.IsciId"><i style="font-size: 25px;" class="pe-7s-close"></i></a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                    <div class="header">
+                        <h4>Işçilərin aylıq toplam maaşı: <span style="color: red;" id="total">0</span> &nbsp; AzN </h4>
+                    </div>
+                    <hr />
+                    <div class="header">
+                        <h4>Siyahıya yeni işçi əlavə et:</h4>
+                    </div>
+                    <div class="content">
+                        <form method="post" action="~/Home/yeniisci">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tam Ad(ad,soyad):</font></font></label>
+                                        <input type="text" class="form-control" placeholder="ad,soyad" name="IsciTamAd">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Maaş məbləği(AzN):</font></font></label>
+                                        <input type="text" class="form-control" placeholder="maaş(AzN)" name="IsciMaas">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Telefon nömrəsi:</font></font></label>
+                                        <input type="text" class="form-control" placeholder="nömrə" name="IsciTelefon">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">İşçinin müqavile bitmə tarixi:</font></font></label>
+                                        <input type="date" data-date="" data-date-format="YYYY MMMM DD" class="form-control" name="IsciMuqavileBitmeTarixi">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vəzifə:</font></font></label>
+                                        <select name="IsciVezifeId" class="form-control" style="cursor: pointer;">
+                                            @foreach (var item in ViewBag.vezife)
+                                            {
+                                                <option value="@item.VezifeId">@item.VezifeAd</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Filial:</font></font></label>
+                                        <select name="IsciFilialId" class="form-control" style="cursor: pointer;">
+                                            @foreach (var item in ViewBag.filial)
+                                            {
+                                                <option value="@item.FilialId">@item.FilialAd</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">İşçinin müqaviləsinin bağlanma tarixi:</font></font></label>
+                                        <input type="date" data-date="" data-date-format="YYYY MMMM DD" class="form-control" name="IsciMuqavileBaqlanmaTarixi">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Maaş günü:</font></font></label>
+                                        <input type="number" class="form-control" placeholder="Gün" name="IsciMaasGunu">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Maaş Faizi:</font></font></label>
+                                        <input type="text" class="form-control" placeholder="Gün" name="IsciMaasFaiz">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-info btn-fill pull-right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Əlavə et</font></font></button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+

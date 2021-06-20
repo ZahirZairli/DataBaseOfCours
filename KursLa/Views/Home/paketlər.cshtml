@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "paketlər";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="row" style="overflow: hidden;">
+    <div class="card">
+        <div class="header">
+            <h4 class="title">Bütün paketlərin siyahısı:</h4>
+        </div>
+        <div class="input-group input-group-lg" style="margin-top: 10px;float: right;">
+            <input onkeyup="myFunction()" id="myInput" type="text" class="form-control" placeholder="Axtar..">
+        </div>
+        <div class="content table-responsive table-full-width">
+            <table id="mytable" style="cursor: pointer;" class="table table-hover table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Paketin Adı</th>
+                        <th>Paketin Muddeti (Ay)</th>
+                        <th>Paketin Qiyməti</th>
+                        <th>Filial</th>
+                        <th colspan="2" class="text-center">Düzəliş et</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.paket)
+                    {
+                        <tr>
+                            <td>@(ViewBag.paket.IndexOf(item)+1)</td>
+                            <td>@item.PaketAd</td>
+                            <td>@item.PaketMuddetiAy</td>
+                            <td>@item.PaketQiymetAyliq</td>
+                            <td>@item.FilialAd</td>
+                            <td class="text-center"><a href="~/Home/editpaket/@item.PaketId"><i class="fas fa-edit"></i></a></td>
+                            <td class="text-center"><a href="~/Home/silpaket/@item.PaketId"><i style="font-size: 25px;" class="pe-7s-close"></i></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <hr />
+        <div class="header">
+            <h4>Siyahıya yeni paket əlavə et:</h4>
+        </div>
+        <div class="content">
+            <form method="post" action="~/Home/yenipaket">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Paketin adı:</font></font></label>
+                            <input type="text" class="form-control" placeholder="paketin adı" name="PaketAd">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Paketin müddəti:</font></font></label>
+                            <input type="text" class="form-control" placeholder="müddət(ay)" name="PaketMuddetiAy">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Filial:</font></font></label>
+                            <select name="PaketFilialId" class="form-control" style="cursor: pointer;">
+                                @foreach (var item in ViewBag.filial)
+                                {
+                                    <option value="@item.FilialId">@item.FilialAd</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Paketin qiyməti:</font></font></label>
+                            <input type="number" class="form-control" placeholder="qiymət" name="PaketQiymetAyliq">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-info btn-fill pull-right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Əlavə et</font></font></button>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+</div>

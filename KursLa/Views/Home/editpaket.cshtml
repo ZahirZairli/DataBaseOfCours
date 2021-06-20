@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "editpaket";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+@using KursLa.Models
+<div class="row" style="overflow: hidden;">
+    <div class="card">
+        <div class="header">
+            <h4 class="title">Paketə düzəliş et:</h4>
+        </div>
+        <hr />
+        <div class="content">
+            <form method="post" action="~/Home/uppaket/@Model.PaketId">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Paketin adı:</font></font></label>
+                            <input type="text" class="form-control" placeholder="paketin adı" name="PaketAd" value="@Model.PaketAd">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Paketin müddəti:</font></font></label>
+                            <input type="text" class="form-control" placeholder="müddət(ay)" name="PaketMuddetiAy" value="@Model.PaketMuddetiAy">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Filial:</font></font></label>
+                            <select name="PaketFilialId" class="form-control" style="cursor: pointer;">
+                                @foreach (var item in ViewBag.filial)
+                                {
+                                    <option @(item.FilialId == Model.PaketFilialId ? "selected" : "") value="@item.FilialId">@item.FilialAd</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Paketin qiyməti:</font></font></label>
+                            <input type="number" class="form-control" placeholder="qiymət" name="PaketQiymetAyliq" value="@Model.PaketQiymetAyliq">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-info btn-fill pull-right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Əlavə et</font></font></button>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+</div>
+

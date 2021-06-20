@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "user";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+@using KursLa.Models
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Profil</font></font></h4>
+                    </div>
+                    <div class="content">
+                        <form action="~/Home/upus/@Model.IstifadeciId" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Filial</font></font></label>
+                                        <input type="text" class="form-control" disabled="" readonly value="@Model.FilialAd">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">İstifadəçi adı</font></font></label>
+                                        <input type="text" class="form-control" disabled readonly value="@Model.IstifadeciTamAd">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">E-mail</font></font></label>
+                                        <input type="email" class="form-control" readonly disabled value="@Model.IstifadeciMail">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Telefon</font></font></label>
+                                        <input type="text" class="form-control" disabled readonly value="@Model.IstifadeciTelefon">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tip</font></font></label>
+                                        <input type="text" class="form-control" disabled readonly value="@Model.TipAd">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Profil şəkli</font></font></label>
+                                        <input name="IstifadeciPhoto" type="file" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-info btn-fill pull-right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Profili Güncelle</font></font></button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-user">
+                    <div class="image">
+                        <img src="~/assets/img/faces/millisoft.jpg" alt="...">
+                    </div>
+                    <div class="content">
+                        <div class="author">
+                            <a href="#">
+                                <img class="avatar border-gray" src="~/assets/img/faces/@Model.IstifadeciPhoto" />
+                                <h4 class="title">
+                                    <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@Model.IstifadeciTamAd</font></font><br>
+                                    <small><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@Model.IstifadeciMail</font></font></small>
+                                </h4>
+                            </a>
+                            <p class="description text-center">
+                                <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Rol: </font></font><br><font style="vertical-align: inherit;">
+                                    <font style="vertical-align: inherit;color: red;">
+                                       @Model.TipAd
+                                    </font>
+                                </font><br>
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="text-center">
+                        <button href="#" class="btn btn-simple"><i class="fa fa-facebook-square"></i></button>
+                        <button href="#" class="btn btn-simple"><i class="fa fa-twitter"></i></button>
+                        <button href="#" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

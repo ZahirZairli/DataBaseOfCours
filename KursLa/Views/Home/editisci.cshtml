@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "editisci";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+@using KursLa.Models
+
+    <div class="header">
+        <a href="~/Home/Employer">Bütün işçilərin siyahısına bax >></a>
+    </div>
+<div class="content" style="margin-top: 15px;">
+    <form method="post" action="~/Home/duzelisisci/@Model.IsciId">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tam Ad(ad,soyad):</font></font></label>
+                    <input type="text" class="form-control" placeholder="ad,soyad" name="IsciTamAd" value="@Model.IsciTamAd">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Maaş məbləği(AzN):</font></font></label>
+                    <input type="text" class="form-control" placeholder="maaş(AzN)" name="IsciMaas" value="@Model.IsciMaas">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="exampleInputEmail1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Telefon nömrəsi:</font></font></label>
+                    <input type="text" class="form-control" placeholder="nömrə" name="IsciTelefon" value="@Model.IsciTelefon">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">İşçinin müqavile bitmə tarixi:</font></font></label>
+                    <input type="text" class="form-control" name="IsciMuqavileBitmeTarixi" value="@Model.IsciMuqavileBitmeTarixi">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vəzifə:</font></font></label>
+                    <select name="IsciVezifeId" class="form-control" style="cursor: pointer;">
+                        @foreach (var item in ViewBag.vezife)
+                        {
+                            <option @(item.VezifeId == Model.IsciVezifeId ? "selected" : "") value="@item.VezifeId">@item.VezifeAd</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Filial:</font></font></label>
+                    <select name="IsciFilialId" class="form-control" style="cursor: pointer;">
+                        @foreach (var item in ViewBag.filial)
+                        {
+                            <option @(item.FilialId == Model.IsciFilialId ? "selected" : "") value="@item.FilialId">@item.FilialAd</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">İşçinin müqaviləsinin bağlanma tarixi:</font></font></label>
+                    <input class="form-control" name="IsciMuqavileBaqlanmaTarixi" value="@Model.IsciMuqavileBaqlanmaTarixi.ToShortDateString()">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Maaş günü:</font></font></label>
+                    <input type="number" class="form-control" placeholder="Gün" name="IsciMaasGunu" value="@Model.IsciMaasGunu">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Maaş Faizi:</font></font></label>
+                    <input type="text" class="form-control" placeholder="Gün" name="IsciMaasFaiz" value="@Model.IsciMaasFaiz">
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-info btn-fill pull-right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Yadda saxla</font></font></button>
+        <div class="clearfix"></div>
+    </form>
+</div>
+
+
